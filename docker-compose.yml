@@ -1,21 +1,22 @@
 version: "3.7"
 
-services: 
-
+services:
   api:
-    build: 
+    build:
       context: ./api
     command: npm run start:watch
-    links: 
+    links:
       - nginx:api.adfoodio.site
-      - redis  
+      - redis
       - mysql
     environment:
+      - MYSQL_URI=localhost
       - VIRTUAL_HOST=api.adfoodio.site
       - VIRTUAL_PORT=4848
-    volumes: 
+      - JWT_KEY=rootjwt
+    volumes:
       - ./api:/api
-    logging: 
+    logging:
       driver: "json-file"
       options:
         max-size: "200k"
@@ -45,7 +46,7 @@ services:
     ports:
       - 6379:6379
     volumes:
-        - ./cache/redis:/data
+      - ./cache/redis:/data
     command: redis-server
     restart: unless-stopped
 
@@ -54,12 +55,12 @@ services:
     ports:
       - 3306:3306
     expose:
-      - '3306'
+      - "3306"
     cap_add:
-      - SYS_NICE  # CAP_SYS_NICE
+      - SYS_NICE # CAP_SYS_NICE
     volumes:
-        - ./cache/mysql:/var/lib/mysql
-        - ./conf-mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+      - ./cache/mysql:/var/lib/mysql
+      - ./conf-mysql.cnf:/etc/mysql/conf.d/mysql.cnf
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=root

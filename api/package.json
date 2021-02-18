@@ -4,7 +4,7 @@
   "description": "API for Food management",
   "main": "index.js",
   "scripts": {
-    "start": "node -r ts-node/register ./src/server.ts",
+    "start": "node -r ts-node/register ./src/index.ts",
     "start:watch": "nodemon 'npm start'",
     "test": "NODE_ENV=testing mocha -r ts-node/register 'src/**/*.spec.ts'",
     "format": "prettier --write src/**/*.ts{,x}",
@@ -13,11 +13,26 @@
   "author": "Jonathan Gill<jonathan@adludio.com>",
   "license": "ISC",
   "dependencies": {
+    "@types/cookie-session": "^2.0.42",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mysql": "^2.15.17",
+    "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
-    "mocha": "^8.1.1"
+    "express-async-errors": "^3.1.1",
+    "express-validator": "^6.9.2",
+    "fs": "0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.1.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.2.5",
+    "path": "^0.12.7",
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "@types/cors": "^2.8.7",
